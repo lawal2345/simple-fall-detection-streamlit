@@ -123,7 +123,10 @@ def process_uploaded_video(uploaded_file, conf_threshold):
             status_text.text(f"Processing frame {frame_count}/{total_frames}")
             
             # Get predictions and annotate frame
-            predictions = infer_frame(frame)
+            if frame_count % 5 == 0:  # Only process every 5th frame
+                predictions = infer_frame(frame)
+            else:
+                predictions = None
             annotated_frame = annotate_frame(frame, predictions, conf_threshold)
             
             # Write to output video
