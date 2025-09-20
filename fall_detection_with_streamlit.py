@@ -160,7 +160,7 @@ def process_webcam_image(camera_input, conf_threshold):
 
 def main():
     """Main Streamlit application"""
-    st.title("🚨 Fall Detection System")
+    st.title("Fall Detection System with Roboflow")
     st.write("Upload a video or use webcam to detect falls using AI")
     
     # Sidebar configuration
@@ -183,7 +183,7 @@ def main():
     )
     
     if option == "Upload Video":
-        st.subheader("📁 Upload Video")
+        st.subheader("Upload Video")
         uploaded_file = st.file_uploader(
             "Choose a video file", 
             type=["mp4", "mov", "avi", "mkv"],
@@ -193,7 +193,7 @@ def main():
         if uploaded_file is not None:
             # Display file info
             file_size_mb = uploaded_file.size / (1024 * 1024)
-            st.info(f"📄 **File:** {uploaded_file.name} ({file_size_mb:.2f} MB)")
+            st.info(f"**File:** {uploaded_file.name} ({file_size_mb:.2f} MB)")
             
             # Process button
             if st.button("🔍 Analyze Video", type="primary"):
@@ -203,7 +203,7 @@ def main():
                     )
                     
                     if video_bytes:
-                        st.success(f"✅ Processing complete! Analyzed {total_frames} frames.")
+                        st.success(f"Processing complete! Analyzed {total_frames} frames.")
                         
                         # Display result video
                         st.subheader("📹 Annotated Result")
@@ -211,7 +211,7 @@ def main():
                         
                         # Download button
                         st.download_button(
-                            label="⬇️ Download Annotated Video",
+                            label="Download Annotated Video",
                             data=video_bytes,
                             file_name=f"fall_detection_{uploaded_file.name}",
                             mime="video/mp4"
@@ -222,17 +222,17 @@ def main():
                             os.unlink(output_path)
     
     elif option == "Webcam":
-        st.subheader("📷 Webcam Analysis")
+        st.subheader("Webcam Analysis")
         st.write("Take a photo to analyze for fall detection")
         
-        camera_input = st.camera_input("📸 Take a picture")
+        camera_input = st.camera_input("Take a picture")
         
         if camera_input is not None:
             with st.spinner("Analyzing image..."):
                 annotated_frame = process_webcam_image(camera_input, conf_threshold)
                 
                 if annotated_frame is not None:
-                    st.subheader("🔍 Analysis Result")
+                    st.subheader("Analysis Result")
                     st.image(
                         cv2.cvtColor(annotated_frame, cv2.COLOR_BGR2RGB),
                         channels="RGB",
@@ -240,7 +240,7 @@ def main():
                     )
     
     # Information section
-    with st.expander("📖 How it works"):
+    with st.expander("How it works"):
         st.write("""
         **Detection Legend:**
         - 🟢 **Green boxes**: Person standing
