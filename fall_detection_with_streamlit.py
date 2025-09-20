@@ -4,9 +4,19 @@ import streamlit as st
 import tempfile
 import numpy as np
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+try:
+    # For Streamlit Cloud deployment
+    API_KEY = st.secrets["ROBOFLOW_API_KEY"]
+except:
+    # For local development
+    API_KEY = os.getenv("ROBOFLOW_API_KEY")
 
 # Configuration
-API_KEY = "df7e8IGIzCSNyzpl0wPh"
 PROJECT_ID = "fall-detection-mbldh"
 MODEL_VERSION = "1"
 INFERENCE_URL = f"https://detect.roboflow.com/{PROJECT_ID}/{MODEL_VERSION}?api_key={API_KEY}"
