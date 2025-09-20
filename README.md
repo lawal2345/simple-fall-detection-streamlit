@@ -59,8 +59,10 @@ This project implements an automated fall detection system that can analyze vide
 ## 💻 Local Installation & Setup
 
 ### Prerequisites
-- Python 3.7 or higher
 - Webcam (optional, for real-time detection)
+
+### WATCH DEMO VIDEO HERE
+[Watch Demo Video](assets/fall_output_annotatedv1.mp4)
 
 
 ## License
